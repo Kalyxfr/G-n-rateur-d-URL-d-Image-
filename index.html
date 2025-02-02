@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtenir l'URL de l'image</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        input[type="file"] {
+            font-size: 1.2em;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="file"]:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #333;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Animation de fade-in */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Animation de translation pour les inputs */
+        @keyframes slideUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Ajout d'un effet de shadow */
+        input[type="file"] {
+            animation: slideUp 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Obtenir l'URL d'une image</h1>
+    
+    <input type="file" id="imageInput" accept="image/*">
+    <p id="imageURL">Sélectionnez une image pour obtenir son URL.</p>
+</div>
+
+<script>
+    // Fonction pour afficher l'URL de l'image
+    document.getElementById('imageInput').addEventListener('change', function(event) {
+        const file = event.target.files[0]; // On récupère le fichier sélectionné
+        const imageURL = URL.createObjectURL(file); // Création de l'URL de l'image
+        
+        // Afficher l'URL
+        document.getElementById('imageURL').textContent = "URL de l'image: " + imageURL;
+    });
+</script>
+
+</body>
+</html>
